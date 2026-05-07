@@ -1,4 +1,4 @@
-# LSTM-Autoencoder for Multivariate Time Series Clustering
+# LSTM-Autoencoder for multivariate time series clustering
 
 Unsupervised clustering of multivariate time series using LSTM-autoencoder with latent space compression and K-Means clustering.
 
