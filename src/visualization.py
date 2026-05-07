@@ -79,46 +79,6 @@ def plot_latent_space(
     
     plt.show()
 
-def plot_reconstruction_examples(
-    X_true: np.ndarray,
-    X_pred: np.ndarray,
-    n_examples: int = 4,
-    feature_idx: int = 0,
-    save_path: Optional[str] = None
-):
-    """Показывает примеры исходных и восстановленных рядов."""
-    n_samples = min(len(X_true), n_examples)
-    
-    fig, axes = plt.subplots(n_samples, 1, figsize=(12, 3*n_samples))
-    if n_samples == 1:
-        axes = [axes]
-    
-    for i in range(n_samples):
-        ax = axes[i]
-        
-        true_series = X_true[i, :, feature_idx]
-        pred_series = X_pred[i, :, feature_idx]
-        
-        time_steps = np.arange(len(true_series))
-        
-        ax.plot(time_steps, true_series, 'b-', label='Исходный', linewidth=2, alpha=0.8)
-        ax.plot(time_steps, pred_series, 'r--', label='Восстановленный', linewidth=2, alpha=0.8)
-        
-        mse = np.mean((true_series - pred_series) ** 2)
-        ax.set_title(f'Пример {i+1}, MSE = {mse:.4f}', fontsize=12)
-        ax.set_xlabel('Время')
-        ax.set_ylabel(f'Признак {feature_idx}')
-        ax.legend()
-        ax.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    
-    if save_path:
-        plt.savefig(save_path, dpi=150, bbox_inches='tight')
-        print(f"График сохранен в {save_path}")
-    
-    plt.show()
-
 def plot_reconstruction_error_distribution(
     X_true: np.ndarray,
     X_pred: np.ndarray,
